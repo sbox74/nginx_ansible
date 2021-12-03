@@ -1,0 +1,30 @@
+
+---
+
+- name: remove nginx
+  hosts: nginx
+  become: yes
+
+  tasks:
+  - name: stop nginx
+    ansible.builtin.service:
+      name: nginx
+      enabled: no
+      state: stopped
+
+  - name: remove nginx
+    ansible.builtin.apt:
+      name: nginx
+      state: absent
+
+#  - name: remove nginx dir
+#    ansible.builtin.file:
+#      path: /etc/nginx
+#      state: absent
+
+#  - name: remove html
+#    ansible.builtin.file:
+#      path: /var/www/my_nginx
+#      state: absent
+
+
